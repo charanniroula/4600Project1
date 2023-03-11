@@ -31,10 +31,13 @@ func main() {
 	// First-come, first-serve scheduling
 	FCFSSchedule(os.Stdout, "First-come, first-serve", processes)
 
+	//Shortest Job First (SJF)
 	SJFSchedule(os.Stdout, "Shortest-job-first", processes)
-	//
+
+	//SJF Priority
 	SJFPrioritySchedule(os.Stdout, "Priority", processes)
-	//
+
+	//Round Robin(RR)
 	RRSchedule(os.Stdout, "Round-robin", processes)
 }
 
@@ -128,8 +131,10 @@ func FCFSSchedule(w io.Writer, title string, processes []Process) {
 	outputSchedule(w, schedule, aveWait, aveTurnaround, aveThroughput)
 }
 
-//func SJFPrioritySchedule(w io.Writer, title string, processes []Process) { }
-//
+// SJFSchedule outputs a schedule of processes in a GANTT chart and a table of timing given:
+// • an output writer
+// • a title for the chart
+// • a slice of processes
 func SJFSchedule(w io.Writer, title string, processes []Process) {
 	var (
 		serviceTime     int64
@@ -191,9 +196,11 @@ func SJFSchedule(w io.Writer, title string, processes []Process) {
 	outputGantt(w, gantt)
 	outputSchedule(w, schedule, aveWait, aveTurnaround, aveThroughput)
 }
-//func SJFSchedule(w io.Writer, title string, processes []Process) { }
-//
 
+// SJFPrioritychedule outputs a schedule of processes in a GANTT chart and a table of timing given:
+// • an output writer
+// • a title for the chart
+// • a slice of processes
 func SJFPrioritySchedule(w io.Writer, title string, processes []Process) {
 	var (
 		serviceTime     int64
@@ -262,8 +269,10 @@ func SJFPrioritySchedule(w io.Writer, title string, processes []Process) {
 	outputSchedule(w, schedule, aveWait, aveTurnaround, aveThroughput)
 }
 
-//func RRSchedule(w io.Writer, title string, processes []Process) { }
-
+// RRSchedule outputs a schedule of processes in a GANTT chart and a table of timing given:
+// • an output writer
+// • a title for the chart
+// • a slice of processes
 func RRSchedule(w io.Writer, title string, processes []Process) {
 	var (
 		serviceTime     int64
